@@ -8,5 +8,10 @@
 
     <h1>PWA example</h1> 
 
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/serviceWorker.js')
+        }
+    </script>
 </body>
 </html>

@@ -5,13 +5,40 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link data-n-head="1" rel="manifest" href="/tf-2019-demo/manifest.json">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- vuetify -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
 
-    <img src="/tf-2019-demo/icons/cute.png" class="img-fluid" alt="Responsive image">
     <div id="vue-app">
-        {{message}}
+        <v-app>
+            <v-content>
+                <v-container>
+                    <v-row>
+                        <v-col>
+                            <v-card>
+                                <v-card-title>Hello from PWA</v-card-title>
+                                <v-card-text>
+                                    <img src="/tf-2019-demo/icons/cute.png" class="img-fluid" alt="Responsive image">
+                                </v-card-text>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="12" sm="6">
+                            <v-text-field v-model="meter" label="Meter" />
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-text-field :value="zoll" label="Zoll" />
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
     </div>
 
     <script>
@@ -19,11 +46,23 @@
             navigator.serviceWorker.register('/tf-2019-demo/serviceWorker.js')
         }
     </script>
+
+    <!-- vue & vuetify -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script>
         var app = new Vue({
             el: '#vue-app',
-            data: {
-                message: 'Hello Vue!'
+            vuetify: new Vuetify(),
+            data(){
+                return {
+                    meter: 0
+                }
+            },
+            computed: {
+                zoll(){
+                    return this.meter * 39.37;
+                }
             }
         })
     </script>

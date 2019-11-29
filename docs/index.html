@@ -4,16 +4,28 @@
     <title>TechFriday 2019</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link data-n-head="1" rel="manifest" href="/tf-2019-demo/manifest.json">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-    <h1>PWA example</h1>
 
     <img src="/tf-2019-demo/icons/cute.png" class="img-fluid" alt="Responsive image">
+    <div id="vue-app">
+        {{message}}
+    </div>
 
     <script>
         if('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/tf-2019-demo/serviceWorker.js')
         }
+    </script>
+    <script>
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        })
     </script>
 </body>
 </html>
